@@ -1,0 +1,14 @@
+- name: Execute 'dis cu' on Huawei Switches
+  hosts: huawei_switches
+  connection: network_cli
+  gather_facts: no
+
+  tasks:
+    - name: Display Current Configuration
+      cli:
+        command: dis cu
+      register: config_output
+
+    - name: Print Configuration Output
+      debug:
+        var: config_output.stdout_lines
